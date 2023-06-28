@@ -25,12 +25,10 @@ const DemandComponent: React.FC<DemandProps> = ({ demand }) => {
   return (
     <>
       <td>{demand.id}</td>
-      <td>{demand.product}</td>
       <td>{demand.companyId}</td>
       <td>{demand.requiredValue}</td>
       <td>{demand.deliveredValue}</td>
       <td>{demand.maximumValue}</td>
-      <td>{demand.demandCategory}</td>
       <td>{demand.description}</td>
       <td>{formattedStartDate}</td>
       <td>{formattedEndDate}</td>
