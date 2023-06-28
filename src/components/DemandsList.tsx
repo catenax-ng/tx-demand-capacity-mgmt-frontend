@@ -1,9 +1,12 @@
 import React, { useContext, useState, useMemo, useCallback } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { DemandContext, Demand} from '../contexts/DemandContextProvider';
+import { DemandContext, Demand } from '../contexts/DemandContextProvider';
 import EditForm from './EditForm';
 import AddForm from './AddForm';
 import Pagination from './Pagination';
+import DemandsTable from './DemandsTable';
+import DemandsSearch from './DemandsSearch';
+import DemandsModal from './DemandsModal';
 
 const DemandsList: React.FC = () => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -51,12 +54,10 @@ const DemandsList: React.FC = () => {
     setSelectedDemand(demand);
     setShowEditModal(true);
   };
-  
+
   const handleCloseEditModal = () => {
     setShowEditModal(false);
   };
-
-  
 
   const filteredDemands = useMemo(() => {
     let sortedDemands = [...demands];
@@ -123,7 +124,7 @@ const DemandsList: React.FC = () => {
           </td>
         </tr>
       )),
-    [slicedDemands,handleDeleteDemand]
+    [slicedDemands, handleDeleteDemand]
   );
 
   return (
@@ -141,44 +142,17 @@ const DemandsList: React.FC = () => {
         </div>
       </div>
 
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+      <DemandsSearch
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
       />
 
-      <table className="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th onClick={() => handleSort('id')}>
-              Id {sortColumn === 'id' && <i className="material-icons">&#x25B2;</i>}
-            </th>
-            <th onClick={() => handleSort('companyId')}>
-              Company Id {sortColumn === 'companyId' && <i className="material-icons">&#x25B2;</i>}
-            </th>
-            <th onClick={() => handleSort('requiredValue')}>
-              Required Value {sortColumn === 'requiredValue' && <i className="material-icons">&#x25B2;</i>}
-            </th>
-            <th onClick={() => handleSort('deliveredValue')}>
-              Delivered Value {sortColumn === 'deliveredValue' && <i className="material-icons">&#x25B2;</i>}
-            </th>
-            <th onClick={() => handleSort('maximumValue')}>
-              Maximum Value {sortColumn === 'maximumValue' && <i className="material-icons">&#x25B2;</i>}
-            </th>
-            <th onClick={() => handleSort('description')}>
-              Description {sortColumn === 'description' && <i className="material-icons">&#x25B2;</i>}
-            </th>
-            <th onClick={() => handleSort('startDate')}>
-              Start Date {sortColumn === 'startDate' && <i className="material-icons">&#x25B2;</i>}
-            </th>
-            <th onClick={() => handleSort('endDate')}>
-              End Date {sortColumn === 'endDate' && <i className="material-icons">&#x25B2;</i>}
-            </th>
-          </tr>
-        </thead>
-        <tbody>{demandItems}</tbody>
-      </table>
+      <DemandsTable
+        sortColumn={sortColumn}
+        sortOrder={sortOrder}
+        handleSort={handleSort}
+        demandItems={demandItems}
+      />
 
       <Pagination
         pages={totalPagesNum}
@@ -187,7 +161,10 @@ const DemandsList: React.FC = () => {
         demands={filteredDemands}
       />
 
-      <Modal show={show} onHide={handleClose}>
+      <DemandsModal
+        show={show}
+        handleClose={handleClose}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Add Demand</Modal.Title>
         </Modal.Header>
@@ -199,21 +176,24 @@ const DemandsList: React.FC = () => {
             Close Button
           </Button>
         </Modal.Footer>
-      </Modal>
+      </DemandsModal>
 
-      <Modal show={showEditModal} onHide={handleCloseEditModal}>
+      <DemandsModal
+        show={showEditModal}
+        handleClose={handleCloseEditModal}
+      >
         <Modal.Header closeButton>
-        <Modal.Title>Edit Demand</Modal.Title>
+          <Modal.Title>Edit Demand</Modal.Title>
         </Modal.Header>
-  <Modal.Body>
-    {selectedDemand && <EditForm theDemand={selectedDemand} />}
-  </Modal.Body>
-  <Modal.Footer>
-    <Button variant="secondary" onClick={handleCloseEditModal}>
-      Close
-    </Button>
-  </Modal.Footer>
-</Modal>
+        <Modal.Body>
+          {selectedDemand && <EditForm theDemand={selectedDemand} />}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseEditModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </DemandsModal>
     </>
   );
 };
