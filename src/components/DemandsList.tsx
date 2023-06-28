@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo, useCallback } from 'react';
+import React, { useContext, useState, useMemo } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { DemandContext } from '../contexts/DemandContextProvider';
 import DemandComponent from './Demand';
@@ -7,26 +7,38 @@ import Pagination from './Pagination';
 
 const DemandsList: React.FC = () => {
   const { demands } = useContext(DemandContext)!;
-
-  const [show, setShow] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [show, setShow] = useState(false); // Add setShow to manage modal visibility
   const [currentPage, setCurrentPage] = useState(1);
   const demandsPerPage = 20;
 
-  const handleShow = useCallback(() => {
+  const handleShow = () => {
     setShow(true);
-  }, []);
+  };
 
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     setShow(false);
-  }, []);
+  };
+
+  const filteredDemands = useMemo(() => {
+    if (searchQuery === '') {
+      return demands;
+    }
+    return demands.filter((demand) =>
+      demand.description.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [demands, searchQuery]);
 
   const slicedDemands = useMemo(() => {
     const indexOfLastDemand = currentPage * demandsPerPage;
     const indexOfFirstDemand = indexOfLastDemand - demandsPerPage;
-    return demands.slice(indexOfFirstDemand, indexOfLastDemand);
-  }, [demands, currentPage, demandsPerPage]);
+    return filteredDemands.slice(indexOfFirstDemand, indexOfLastDemand);
+  }, [filteredDemands, currentPage, demandsPerPage]);
 
-  const totalPagesNum = useMemo(() => Math.ceil(demands.length / demandsPerPage), [demands, demandsPerPage]);
+  const totalPagesNum = useMemo(() => Math.ceil(filteredDemands.length / demandsPerPage), [
+    filteredDemands,
+    demandsPerPage,
+  ]);
 
   const DemandComponentMemoized = useMemo(() => React.memo(DemandComponent), []);
 
@@ -55,16 +67,21 @@ const DemandsList: React.FC = () => {
         </div>
       </div>
 
+      <input
+        type="text"
+        placeholder="Search..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+
       <table className="table table-striped table-hover">
         <thead>
           <tr>
             <th>Id</th>
-            <th>Project Id</th>
             <th>Company Id</th>
             <th>Required Value</th>
             <th>Delivered Value</th>
             <th>Maximum Value</th>
-            <th>Demand Category</th>
             <th>Description</th>
             <th>Start Date</th>
             <th>End Date</th>
@@ -77,7 +94,7 @@ const DemandsList: React.FC = () => {
         pages={totalPagesNum}
         setCurrentPage={setCurrentPage}
         currentDemands={slicedDemands}
-        demands={demands}
+        demands={filteredDemands}
       />
 
       <Modal show={show} onHide={handleClose}>
