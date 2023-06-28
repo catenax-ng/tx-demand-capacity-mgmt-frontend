@@ -13,6 +13,7 @@ export interface Demand {
   description: string;
   startDate: string;
   endDate: string;
+  [key: string]: any;
 }
 
 interface DemandContextData {
