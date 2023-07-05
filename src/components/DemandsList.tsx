@@ -83,7 +83,9 @@ const DemandsList: React.FC = () => {
 
     if (searchQuery !== '') {
       sortedDemands = sortedDemands.filter((demand) =>
-        demand.description.toLowerCase().includes(searchQuery.toLowerCase())
+        demand.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        demand.id.toString().includes(searchQuery.toLowerCase()) ||
+        demand.companyId.toString().includes(searchQuery.toLowerCase())
       );
     }
 
