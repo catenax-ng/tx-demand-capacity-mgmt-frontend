@@ -18,6 +18,9 @@
  ********************************************************************************/
 
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
 
 type DemandsSearchProps = {
   searchQuery: string;
@@ -26,12 +29,24 @@ type DemandsSearchProps = {
 
 const DemandsSearch: React.FC<DemandsSearchProps> = ({ searchQuery, setSearchQuery }) => {
   return (
-    <input
-      type="text"
-      placeholder="Search..."
+
+    <div className="row">
+    <div className="col-sm-4">
+      <Form className="d-flex">
+    <Form.Control
+      type="search"
+      placeholder="Search"
+      className="me-1"
+      aria-label="Search"
       value={searchQuery}
       onChange={(e) => setSearchQuery(e.target.value)}
     />
+    <Button variant="outline-primary">Search</Button>
+  </Form>
+    </div>
+  </div>
+
+    
   );
 };
 

@@ -156,7 +156,7 @@ const DemandsList: React.FC = () => {
             <h2>Manage Demands</h2>
           </div>
           <div className="col-sm-6">
-            <Button onClick={handleShow} className="btn btn-success" data-toggle="modal">
+            <Button onClick={handleShow} className="btn btn-success float-end" data-toggle="modal">
               <i className="material-icons">&#xE147;</i> <span>Add New Demand</span>
             </Button>
           </div>
