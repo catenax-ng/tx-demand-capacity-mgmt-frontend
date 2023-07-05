@@ -21,12 +21,14 @@ import DemandsList from "./DemandsList";
 import DemandContextProvider from "../contexts/DemandContextProvider";
 import TopMenu from "./TopMenu";
 
+
+
 function Home() {
     return (
         <><div><TopMenu></TopMenu></div>
         <div className="container-xl">
             <br />
-            <div className="table">
+            <div className="table-responsive">
                 <div className="table-wrapper">
                     <DemandContextProvider>
                         <DemandsList />
