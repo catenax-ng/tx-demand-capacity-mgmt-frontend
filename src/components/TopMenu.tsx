@@ -36,17 +36,6 @@ function TopMenuLinks() {
             <Nav.Link href="#link">Status - <span className="badge rounded-pill text-bg-danger" id="status-minus-count">0</span> </Nav.Link>
             <Nav.Link href="#link">ToDo <span className="badge rounded-pill text-bg-warning" id="todo-count">0</span> </Nav.Link>
             <Nav.Link href="#link">Events <span className="badge rounded-pill text-bg-info" id="events-count">0</span></Nav.Link>
-            {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>*/} 
           </Nav>
         </Navbar.Collapse>
 
