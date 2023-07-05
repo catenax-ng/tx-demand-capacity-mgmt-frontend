@@ -37,7 +37,7 @@ const DemandsList: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortColumn, setSortColumn] = useState('');
   const [sortOrder, setSortOrder] = useState('');
-  const demandsPerPage = 20;
+  const [demandsPerPage, setDemandsPerPage] = useState(20); // Set the default value here
 
   const handleShow = () => {
     setShow(true);
@@ -174,6 +174,17 @@ const DemandsList: React.FC = () => {
         handleSort={handleSort}
         demandItems={demandItems}
       />
+
+      <div className="small-input-bar"> {/* Apply CSS class for styling */}
+        <label htmlFor="demandsPerPageInput">Demands Per Page: </label>
+        <input
+          id="demandsPerPageInput"
+          type="number"
+          min={1}
+          value={demandsPerPage}
+          onChange={(e) => setDemandsPerPage(Number(e.target.value))}
+        />
+      </div>
 
       <Pagination
         pages={totalPagesNum}
