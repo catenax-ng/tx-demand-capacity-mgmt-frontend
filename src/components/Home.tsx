@@ -20,10 +20,11 @@
 import DemandsList from "./DemandsList";
 import DemandContextProvider from "../contexts/DemandContextProvider";
 import TopMenu from "./TopMenu";
+import QuickAcessItems from "./QuickAcessItems";
 
 function Home() {
     return (
-        <><div><TopMenu></TopMenu></div>
+        <><TopMenu></TopMenu>
         <div className="container-xl">
             <br />
             <div className="table">
@@ -33,7 +34,9 @@ function Home() {
                     </DemandContextProvider>
                 </div>
             </div>
-        </div></>
+        </div>
+        <QuickAcessItems></QuickAcessItems>
+        </>
 
     );
 }

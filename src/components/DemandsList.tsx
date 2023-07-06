@@ -132,7 +132,9 @@ const DemandsList: React.FC = () => {
           <td>{demand.endDate.split('T')[0]}</td>
           <td>
             {/*Depending on status, this should be a different span*/}
-        <span className="badge rounded-pill text-bg-success" id="favorites-count">OK</span>
+        <span className="badge rounded-pill text-bg-success" id="tag-ok">OK</span>
+        <span className="badge rounded-pill text-bg-warning" id="tag-warning">Warning</span>
+        <span className="badge rounded-pill text-bg-danger" id="tag-danger">Danger</span>
       </td>
           <td>
           <Button onClick={() => handleEdit(demand)} variant="outline-secondary">Edit</Button>
@@ -159,7 +161,7 @@ const DemandsList: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       <DemandsSearch
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -171,21 +173,19 @@ const DemandsList: React.FC = () => {
         handleSort={handleSort}
         demandItems={demandItems}
       />
-
+      <div className="container">
       <div className="row">
-        <div className="col-sm-6">
           <Pagination
             pages={totalPagesNum}
             setCurrentPage={setCurrentPage}
             currentDemands={slicedDemands}
             demands={filteredDemands}
           />
-        </div>
-        <div className="col-sm-6">
+        <div className="col-sm">
           <div className="float-end">
           <Form>
             <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm="6" className='float-end'>
+              <Form.Label column sm="6">
               Per Page:
               </Form.Label>
               <Col sm="6">
@@ -203,6 +203,7 @@ const DemandsList: React.FC = () => {
           </Form>
           </div>
         </div>
+      </div>
       </div>
 
 
