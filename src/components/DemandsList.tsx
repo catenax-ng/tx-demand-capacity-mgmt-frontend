@@ -11,7 +11,7 @@
  */
 
 import React, { useContext, useState, useMemo, useCallback } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button,Form,Col,Row } from 'react-bootstrap';
 import { DemandContext, Demand } from '../contexts/DemandContextProvider';
 import EditForm from './EditForm';
 import AddForm from './AddForm';
@@ -131,10 +131,14 @@ const DemandsList: React.FC = () => {
           <td>{demand.startDate.split('T')[0]}</td>
           <td>{demand.endDate.split('T')[0]}</td>
           <td>
-            <button onClick={() => handleEdit(demand)}>Edit</button>
+            {/*Depending on status, this should be a different span*/}
+        <span className="badge rounded-pill text-bg-success" id="favorites-count">OK</span>
+      </td>
+          <td>
+          <Button onClick={() => handleEdit(demand)} variant="outline-secondary">Edit</Button>
           </td>
           <td>
-            <button onClick={() => handleDeleteDemand(demand.id)}>Delete</button>
+          <Button onClick={() => handleDeleteDemand(demand.id)} variant="outline-danger">Delete</Button>
           </td>
         </tr>
       )),
@@ -155,7 +159,7 @@ const DemandsList: React.FC = () => {
           </div>
         </div>
       </div>
-
+      
       <DemandsSearch
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -168,23 +172,39 @@ const DemandsList: React.FC = () => {
         demandItems={demandItems}
       />
 
-      <div className="small-input-bar"> {/* Apply CSS class for styling */}
-        <label htmlFor="demandsPerPageInput">Demands Per Page: </label>
-        <input
-          id="demandsPerPageInput"
-          type="number"
-          min={1}
-          value={demandsPerPage}
-          onChange={(e) => setDemandsPerPage(Number(e.target.value))}
-        />
+      <div className="row">
+        <div className="col-sm-6">
+          <Pagination
+            pages={totalPagesNum}
+            setCurrentPage={setCurrentPage}
+            currentDemands={slicedDemands}
+            demands={filteredDemands}
+          />
+        </div>
+        <div className="col-sm-6">
+          <div className="float-end">
+          <Form>
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm="6" className='float-end'>
+              Per Page:
+              </Form.Label>
+              <Col sm="6">
+              <Form.Control
+                  type="number"
+                  aria-describedby="demandsPerPageInput"
+                  min={1}
+                  htmlSize={10}
+                  max={100}
+                  value={demandsPerPage}
+                  onChange={(e) => setDemandsPerPage(Number(e.target.value))}
+                />
+              </Col>
+            </Form.Group>
+          </Form>
+          </div>
+        </div>
       </div>
 
-      <Pagination
-        pages={totalPagesNum}
-        setCurrentPage={setCurrentPage}
-        currentDemands={slicedDemands}
-        demands={filteredDemands}
-      />
 
       <DemandsModal
         show={show}

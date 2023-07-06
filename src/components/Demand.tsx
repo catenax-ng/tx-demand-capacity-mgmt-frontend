@@ -44,7 +44,6 @@ const DemandComponent: React.FC<DemandProps> = ({ demand }) => {
       <td>{demand.description}</td>
       <td>{formattedStartDate}</td>
       <td>{formattedEndDate}</td>
-
       <td>
         <OverlayTrigger overlay={<Tooltip id={`tooltip-top`}>Edit</Tooltip>}>
           <button

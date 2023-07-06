@@ -11,6 +11,7 @@
  */
 
 import React from 'react';
+import Button from 'react-bootstrap';
 
 
 type DemandsTableProps = {
@@ -48,6 +49,9 @@ const DemandsTable: React.FC<DemandsTableProps> = ({ sortColumn, sortOrder, hand
           </th>
           <th onClick={() => handleSort('endDate')}>
             End Date {sortColumn === 'endDate' && <i className="material-icons">&#x25B2;</i>}
+          </th>
+          <th onClick={() => handleSort('status')}>
+            Status {sortColumn === 'status' && <i className="material-icons">&#x25B2;</i>}
           </th>
         </tr>
       </thead>

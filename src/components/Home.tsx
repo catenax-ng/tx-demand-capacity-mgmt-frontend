@@ -21,7 +21,7 @@ function Home() {
         <><div><TopMenu></TopMenu></div>
         <div className="container-xl">
             <br />
-            <div className="table-responsive">
+            <div className="table">
                 <div className="table-wrapper">
                     <DemandContextProvider>
                         <DemandsList />
