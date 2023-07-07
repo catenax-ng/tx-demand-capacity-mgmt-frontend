@@ -10,12 +10,19 @@
  *
  *  SPDX-License-Identifier: Apache-2.0
  */
-import Container from 'react-bootstrap/Container';
+
+import {AiOutlineStock, AiOutlineLink} from 'react-icons/ai';
 
 
 function QuickAcessItems() {
   return (
-  <><div className="absol">This is a placeholder for the quick acess buttons</div></>
+  <>
+  <div className="float-left" style={{position: 'absolute', top: '50%',left:5, transform: 'translate(0%, -50%)'}}>
+    <a className="btn btn-primary m-1 display-4" href="#"><AiOutlineStock/></a>
+    <br />
+    <a className="btn btn-primary m-1 h2" href="#"><AiOutlineLink/></a>
+</div>
+</>
   );
 }
 
