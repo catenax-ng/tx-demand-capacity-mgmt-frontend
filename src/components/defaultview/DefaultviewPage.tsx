@@ -17,7 +17,7 @@ import EditForm from '../EditForm';
 import AddForm from '../AddForm';
 import Pagination from '../Pagination';
 import CapacityGroupsTable from './CapacityGroupsTable';
-import CapacityGroupsSearch from './CapacityGroupsSearch';
+import Search from '../Search';
 import CapacityGroupsModal from './CapacityGroupsModal';
 
 const CapacityGroupsList: React.FC = () => {
@@ -142,7 +142,7 @@ const CapacityGroupsList: React.FC = () => {
         </div>
       </div>
 
-      <CapacityGroupsSearch
+      <Search
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />

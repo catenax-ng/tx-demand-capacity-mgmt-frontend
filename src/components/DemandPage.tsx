@@ -17,7 +17,7 @@ import EditForm from './EditForm';
 import AddForm from './AddForm';
 import Pagination from './Pagination';
 import DemandsTable from './DemandsTable';
-import DemandsSearch from './DemandsSearch';
+import DemandsSearch from './Search';
 import DemandsModal from './DemandsModal';
 
 const DemandsPage: React.FC = () => {
