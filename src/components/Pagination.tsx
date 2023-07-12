@@ -4,15 +4,15 @@ import Pagination from 'react-bootstrap/Pagination';
 interface PaginationProps {
   pages: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  currentDemands: any[]; // Update with the correct type for currentDemands
-  demands: any[]; // Update with the correct type for demands
+  currentItems: any[]; // Update with the correct type for currentItems
+  items: any[]; // Update with the correct type for items
 }
 
 const CustomPagination: React.FC<PaginationProps> = ({
   pages,
   setCurrentPage,
-  currentDemands,
-  demands,
+  currentItems,
+  items,
 }) => {
   const numOfPages: number[] = [];
 
@@ -55,7 +55,7 @@ const CustomPagination: React.FC<PaginationProps> = ({
           </div>
           <div className="col-sm">
             <div className="hint-text text-center">
-              Showing <b>{currentDemands.length}</b> out of <b>{demands.length}</b> entries
+              Showing <b>{currentItems.length}</b> out of <b>{items.length}</b> entries
             </div>
           </div>
           </>

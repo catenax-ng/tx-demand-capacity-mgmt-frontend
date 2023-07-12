@@ -20,7 +20,7 @@ import DemandsTable from './DemandsTable';
 import DemandsSearch from './DemandsSearch';
 import DemandsModal from './DemandsModal';
 
-const DemandsList: React.FC = () => {
+const DemandsPage: React.FC = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedDemand, setSelectedDemand] = useState<Demand | null>(null);
 
@@ -131,7 +131,7 @@ const DemandsList: React.FC = () => {
           <td>{demand.startDate.split('T')[0]}</td>
           <td>{demand.endDate.split('T')[0]}</td>
           <td>
-            {/*Depending on status, this should be a different span*/}
+            {/* TODO Depending on status, this should be a different span*/}
         <span className="badge rounded-pill text-bg-success" id="tag-ok">OK</span>
         <span className="badge rounded-pill text-bg-warning" id="tag-warning">Warning</span>
         <span className="badge rounded-pill text-bg-danger" id="tag-danger">Danger</span>
@@ -178,8 +178,8 @@ const DemandsList: React.FC = () => {
           <Pagination
             pages={totalPagesNum}
             setCurrentPage={setCurrentPage}
-            currentDemands={slicedDemands}
-            demands={filteredDemands}
+            currentItems={slicedDemands}
+            items={filteredDemands}
           />
         <div className="col-sm">
           <div className="float-end">
@@ -244,4 +244,4 @@ const DemandsList: React.FC = () => {
   );
 };
 
-export default DemandsList;
+export default DemandsPage;

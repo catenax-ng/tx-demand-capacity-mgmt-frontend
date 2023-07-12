@@ -17,8 +17,8 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import DemandsList from "./DemandsList";
-import DemandContextProvider from "../contexts/DemandContextProvider";
+import CapacityGroupsList from "./defaultview/DefaultviewPage";
+import CapacityGroupContext from "../contexts/CapacityGroupsContextProvider";
 import TopMenu from "./TopMenu";
 import QuickAcessItems from "./QuickAcessItems";
 
@@ -29,9 +29,9 @@ function Home() {
             <br />
             <div className="table">
                 <div className="table-wrapper">
-                    <DemandContextProvider>
-                        <DemandsList />
-                    </DemandContextProvider>
+                    <CapacityGroupContext>
+                        <CapacityGroupsList />
+                    </CapacityGroupContext>
                 </div>
             </div>
         </div>

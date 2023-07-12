@@ -24,12 +24,12 @@ function TopMenuLinks() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home"><FaStar/> Favorites <span className="badge rounded-pill text-bg-primary" id="favorites-count">0</span></Nav.Link>
-            <Nav.Link href="#link">Alerts <span className="badge rounded-pill text-bg-danger" id="alerts-count">0</span></Nav.Link>
-            <Nav.Link href="#link"><FaArrowUp/> Status  <span className="badge rounded-pill text-bg-success" id="status-plus-count">0</span> </Nav.Link>
-            <Nav.Link href="#link"><FaArrowDown/> Status <span className="badge rounded-pill text-bg-danger" id="status-minus-count">0</span> </Nav.Link>
-            <Nav.Link href="#link">Todo <span className="badge rounded-pill text-bg-warning" id="todo-count">0</span> </Nav.Link>
-            <Nav.Link href="#link">Events <span className="badge rounded-pill text-bg-info" id="events-count">0</span></Nav.Link>
+            <Nav.Link href="#favorites"><FaStar/> Favorites <span className="badge rounded-pill text-bg-primary" id="favorites-count">0</span></Nav.Link>
+            <Nav.Link href="#alerts">Alerts <span className="badge rounded-pill text-bg-danger" id="alerts-count">0</span></Nav.Link>
+            <Nav.Link href="#statusup"><FaArrowUp/> Status  <span className="badge rounded-pill text-bg-success" id="status-plus-count">0</span> </Nav.Link>
+            <Nav.Link href="#statusdown"><FaArrowDown/> Status <span className="badge rounded-pill text-bg-danger" id="status-minus-count">0</span> </Nav.Link>
+            <Nav.Link href="#todo">Todo <span className="badge rounded-pill text-bg-warning" id="todo-count">0</span> </Nav.Link>
+            <Nav.Link href="#events">Events <span className="badge rounded-pill text-bg-info" id="events-count">0</span></Nav.Link>
           </Nav>
         </Navbar.Collapse>
 
@@ -37,8 +37,8 @@ function TopMenuLinks() {
           <Navbar.Text>
             Signed in as: <a href="#login">USERID</a>
           </Navbar.Text>
-          <Nav.Link href="#link" className="p-3 navbar-nav nav-item"><FiSettings/></Nav.Link>
-          <Nav.Link href="#link" className="p-2 navbar-nav nav-item"><FiLogOut/></Nav.Link>
+          <Nav.Link href="#settings" className="p-3 navbar-nav nav-item"><FiSettings/></Nav.Link>
+          <Nav.Link href="#logout" className="p-2 navbar-nav nav-item"><FiLogOut/></Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>
