@@ -18,7 +18,6 @@ import AddForm from './AddForm';
 import Pagination from './Pagination';
 import DemandsTable from './DemandsTable';
 import DemandsSearch from './Search';
-import DemandsModal from './DemandsModal';
 
 const DemandsPage: React.FC = () => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -30,15 +29,7 @@ const DemandsPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortColumn, setSortColumn] = useState('');
   const [sortOrder, setSortOrder] = useState('');
-  const [demandsPerPage, setDemandsPerPage] = useState(20); // Set the default value here
-
-  const handleShow = () => {
-    setShow(true);
-  };
-
-  const handleClose = () => {
-    setShow(false);
-  };
+  const [demandsPerPage, setDemandsPerPage] = useState(5); // Set the default value here
 
   const handleSort = (column: string) => {
     if (sortColumn === column) {
@@ -152,10 +143,9 @@ const DemandsPage: React.FC = () => {
       <div className="table-title">
         <div className="row">
           <div className="col-sm-6">
-            <h2>Manage Demands</h2>
           </div>
           <div className="col-sm-6">
-            <Button onClick={handleShow} className="btn btn-success float-end" data-toggle="modal">
+            <Button className="btn btn-success float-end" data-toggle="modal">
               <i className="material-icons">&#xE147;</i> <span>Add New Demand</span>
             </Button>
           </div>
@@ -206,40 +196,6 @@ const DemandsPage: React.FC = () => {
       </div>
       </div>
 
-
-      <DemandsModal
-        show={show}
-        handleClose={handleClose}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Add Demand</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <AddForm />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close Button
-          </Button>
-        </Modal.Footer>
-      </DemandsModal>
-
-      <DemandsModal
-        show={showEditModal}
-        handleClose={handleCloseEditModal}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Demand</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {selectedDemand && <EditForm theDemand={selectedDemand} />}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseEditModal}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </DemandsModal>
     </>
   );
 };

@@ -12,16 +12,46 @@
  */
 
 import {AiOutlineStock, AiOutlineLink} from 'react-icons/ai';
-
+import { Modal, Button } from 'react-bootstrap';
+import { useState } from 'react';
+import DemandsPage from './DemandPage';
+import DemandContextProvider from '../contexts/DemandContextProvider';
 
 function QuickAcessItems() {
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
   <>
   <div className="float-left" style={{position: 'absolute', top: '50%',left:5, transform: 'translate(0%, -50%)'}}>
-    <a className="btn btn-primary m-1 display-4" href="#"><AiOutlineStock/></a>
+    <a className="btn btn-primary m-1 display-4"  onClick={handleShow}  href="#"><AiOutlineStock/></a>
     <br />
     <a className="btn btn-primary m-1 h2" href="#"><AiOutlineLink/></a>
 </div>
+<Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        size="xl"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Demand Management Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <DemandContextProvider>
+          <DemandsPage></DemandsPage>
+        </DemandContextProvider>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
 </>
   );
 }

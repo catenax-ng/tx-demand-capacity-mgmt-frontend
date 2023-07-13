@@ -186,7 +186,6 @@ const CapacityGroupsList: React.FC = () => {
       </div>
       </div>
 
-
       <CapacityGroupsModal
         show={show}
         handleClose={handleClose}
@@ -203,7 +202,7 @@ const CapacityGroupsList: React.FC = () => {
           </Button>
         </Modal.Footer>
       </CapacityGroupsModal>
-    </>
+          </>
   );
 };
 
