@@ -31,7 +31,7 @@ jobs:
       - name: Run Veracode Upload And Scan
         uses: veracode/veracode-uploadandscan-action@0.2.4
         with:
-          appname: "product-vas-country-risk-frontend"
+          appname: "demand-capacity-mgmt-frontend"
           createprofile: false
           filepath: "./veracode-scan-target.zip"
           vid: "${{ secrets.VERACODE_API_ID }}"
