@@ -3,7 +3,7 @@ name: "Veracode upload and scan"
 on:
   push:
     branches:
-      - 'DCMFOSS-32'
+      - DCMFOSS-32
       - main
       - dev
     paths:
