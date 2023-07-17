@@ -3,6 +3,7 @@ name: "Veracode upload and scan"
 on:
   push:
     branches:
+      - FrontendandCSS
       - main
       - dev
     paths:
