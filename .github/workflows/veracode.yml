@@ -46,3 +46,4 @@ jobs:
           createprofile: false
           filepath: "./veracode-scan-target.zip"
           vid: "${{ secrets.VERACODE_API_ID }}"
+          vkey: "${{ secrets.VERACODE_API_KEY }}"
