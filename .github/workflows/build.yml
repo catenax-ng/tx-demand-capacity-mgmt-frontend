@@ -3,7 +3,7 @@ name: build
 on:
   push:
     branches:
-      - 'DCMFOSS-32'
+      - main
 
 env:
   REGISTRY: ghcr.io
