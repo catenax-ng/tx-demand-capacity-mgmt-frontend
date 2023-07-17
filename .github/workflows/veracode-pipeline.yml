@@ -10,6 +10,7 @@ on:
       - 'src/**'
       - 'package.json'
       - 'Dockerfile'
+      
 jobs:
   analyze:
     runs-on: ubuntu-latest
