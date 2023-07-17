@@ -10,9 +10,6 @@ on:
       - 'src/**'
       - 'package.json'
       - 'Dockerfile'
-  schedule:
-    # Once a day
-    - cron: "0 0 * * *"
 jobs:
   analyze:
     runs-on: ubuntu-latest
