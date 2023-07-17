@@ -22,7 +22,7 @@ import CapacityGroupsModal from './CapacityGroupsModal';
 
 const CapacityGroupsList: React.FC = () => {
   const [showEditModal, setShowEditModal] = useState(false);
-  const [selectedDemand, setSelectedDemand] = useState<CapacityGroup | null>(null);
+  const [selectedCapacityGroup, setSelectedCapacityGroup] = useState<CapacityGroup | null>(null);
 
   const { capacitygroups } = useContext(CapacityGroupContext)!;
   const [searchQuery, setSearchQuery] = useState('');
@@ -52,7 +52,7 @@ const CapacityGroupsList: React.FC = () => {
   };
 
   const handleEdit = (capacitygroup: CapacityGroup) => {
-    setSelectedDemand(capacitygroup);
+    setSelectedCapacityGroup(capacitygroup);
     setShowEditModal(true);
   };
 
@@ -138,14 +138,13 @@ const CapacityGroupsList: React.FC = () => {
             <h2>Welcome USERID !</h2>
           </div>
           <div className="col-sm-6">
+            <Search
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
           </div>
         </div>
       </div>
-
-      <Search
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
 
       <CapacityGroupsTable
         sortColumn={sortColumn}

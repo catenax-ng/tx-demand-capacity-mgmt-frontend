@@ -22,8 +22,6 @@ type DemandsSearchProps = {
 const DemandsSearch: React.FC<DemandsSearchProps> = ({ searchQuery, setSearchQuery }) => {
   return (
 
-    <div className="row">
-    <div className="col-sm-4">
       <Form className="d-flex">
     <Form.Control
       type="search"
@@ -35,9 +33,6 @@ const DemandsSearch: React.FC<DemandsSearchProps> = ({ searchQuery, setSearchQue
     />
     <Button variant="outline-primary">Search</Button>
   </Form>
-    </div>
-  </div>
-
     
   );
 };

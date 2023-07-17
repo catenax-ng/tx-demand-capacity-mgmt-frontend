@@ -13,19 +13,17 @@
 import React, { useContext, useState, useMemo, useCallback } from 'react';
 import { Modal, Button,Form,Col,Row } from 'react-bootstrap';
 import { DemandContext, Demand } from '../contexts/DemandContextProvider';
-import EditForm from './EditForm';
-import AddForm from './AddForm';
 import Pagination from './Pagination';
 import DemandsTable from './DemandsTable';
 import DemandsSearch from './Search';
+import { FcCancel } from 'react-icons/fc';
 
 const DemandsPage: React.FC = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedDemand, setSelectedDemand] = useState<Demand | null>(null);
-
   const { demands, deleteDemand } = useContext(DemandContext)!;
+
   const [searchQuery, setSearchQuery] = useState('');
-  const [show, setShow] = useState(false); // Add setShow to manage modal visibility
   const [currentPage, setCurrentPage] = useState(1);
   const [sortColumn, setSortColumn] = useState('');
   const [sortOrder, setSortOrder] = useState('');
@@ -57,10 +55,9 @@ const DemandsPage: React.FC = () => {
     setSelectedDemand(demand);
     setShowEditModal(true);
   };
+  
+  const handleCloseEdit = () => setShowEditModal(false);
 
-  const handleCloseEditModal = () => {
-    setShowEditModal(false);
-  };
 
   const filteredDemands = useMemo(() => {
     let sortedDemands = [...demands];
@@ -131,7 +128,7 @@ const DemandsPage: React.FC = () => {
           <Button onClick={() => handleEdit(demand)} variant="outline-secondary">Edit</Button>
           </td>
           <td>
-          <Button onClick={() => handleDeleteDemand(demand.id)} variant="outline-danger">Delete</Button>
+          <Button onClick={() => handleDeleteDemand(demand.id)} variant="outline-danger"><FcCancel/></Button>
           </td>
         </tr>
       )),
@@ -143,6 +140,10 @@ const DemandsPage: React.FC = () => {
       <div className="table-title">
         <div className="row">
           <div className="col-sm-6">
+          <DemandsSearch
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
           </div>
           <div className="col-sm-6">
             <Button className="btn btn-success float-end" data-toggle="modal">
@@ -151,11 +152,6 @@ const DemandsPage: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <DemandsSearch
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
 
       <DemandsTable
         sortColumn={sortColumn}
@@ -196,6 +192,25 @@ const DemandsPage: React.FC = () => {
       </div>
       </div>
 
+      <Modal
+        show={showEditModal}
+        onHide={handleCloseEdit}
+        backdrop="static"
+        keyboard={false}
+        size="lg"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Edit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+         HELP !
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseEdit}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

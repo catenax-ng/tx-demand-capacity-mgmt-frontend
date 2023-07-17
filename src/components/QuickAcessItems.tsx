@@ -39,7 +39,7 @@ function QuickAcessItems() {
         size="xl"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Demand Management Details</Modal.Title>
+          <Modal.Title>Demand Management View</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <DemandContextProvider>
