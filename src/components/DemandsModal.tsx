@@ -17,16 +17,21 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
- body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+import React from 'react';
+import { Modal } from 'react-bootstrap';
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+type DemandsModalProps = {
+  show: boolean;
+  handleClose: () => void;
+  children: React.ReactNode;
+};
+
+const DemandsModal: React.FC<DemandsModalProps> = ({ show, handleClose, children }) => {
+  return (
+    <Modal show={show} onHide={handleClose}>
+      {children}
+    </Modal>
+  );
+};
+
+export default DemandsModal;

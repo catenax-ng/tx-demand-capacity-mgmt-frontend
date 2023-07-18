@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import Pagination from 'react-bootstrap/Pagination';
 
 interface PaginationProps {
   pages: number;
@@ -7,7 +8,12 @@ interface PaginationProps {
   demands: any[]; // Update with the correct type for demands
 }
 
-const Pagination: React.FC<PaginationProps> = ({ pages, setCurrentPage, currentDemands, demands }) => {
+const CustomPagination: React.FC<PaginationProps> = ({
+  pages,
+  setCurrentPage,
+  currentDemands,
+  demands,
+}) => {
   const numOfPages: number[] = [];
 
   for (let i = 1; i <= pages; i++) {
@@ -20,28 +26,37 @@ const Pagination: React.FC<PaginationProps> = ({ pages, setCurrentPage, currentD
     setCurrentPage(currentButton);
   }, [currentButton, setCurrentPage]);
 
+  const handlePrevious = () => {
+    setCurrentButton((prev) => (prev === 1 ? prev : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentButton((next) => (next === numOfPages.length ? next : next + 1));
+  };
+
   return (
     <div className="clearfix">
       <div className="hint-text">
         Showing <b>{currentDemands.length}</b> out of <b>{demands.length}</b> entries
       </div>
-      <ul className="pagination">
-        <li className={`${currentButton === 1 ? 'page-item disabled' : 'page-item'}`}>
-          <a href="#!" onClick={() => setCurrentButton((prev) => (prev === 1 ? prev : prev - 1))}>Previous</a>
-        </li>
-        {numOfPages.map((page, index) => {
-          return (
-            <li key={index} className={`${currentButton === page ? 'page-item active' : 'page-item'}`}>
-              <a href="#!" className="page-link" onClick={() => setCurrentButton(page)}>{page}</a>
-            </li>
-          )
-        })}
-        <li className={`${currentButton === numOfPages.length ? 'page-item disabled' : 'page-item'}`}>
-          <a href="#!" onClick={() => setCurrentButton((next) => (next === numOfPages.length ? next : next + 1))}>Next</a>
-        </li>
-      </ul>
+      <Pagination>
+        <Pagination.Prev disabled={currentButton === 1} onClick={handlePrevious} />
+        {numOfPages.map((page, index) => (
+          <Pagination.Item
+            key={index}
+            active={currentButton === page}
+            onClick={() => setCurrentButton(page)}
+          >
+            {page}
+          </Pagination.Item>
+        ))}
+        <Pagination.Next
+          disabled={currentButton === numOfPages.length}
+          onClick={handleNext}
+        />
+      </Pagination>
     </div>
   );
 };
 
-export default Pagination;
+export default CustomPagination;
