@@ -2,9 +2,9 @@ name: Veracode Static Analysis Pipeline Scan
 
 on:
   push:
-    branches: [ "DCMFOSS-32" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "DCMFOSS-32" ]
+    branches: [ "main" ]
   schedule:
     - cron: '27 12 * * 6'
 
