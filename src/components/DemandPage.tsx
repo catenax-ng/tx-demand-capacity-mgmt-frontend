@@ -16,6 +16,7 @@ import { DemandContext, Demand } from '../contexts/DemandContextProvider';
 import Pagination from './Pagination';
 import DemandsTable from './DemandsTable';
 import DemandsSearch from './Search';
+import EditForm from './EditForm';
 import { FcCancel } from 'react-icons/fc';
 
 
@@ -23,10 +24,6 @@ const DemandsPage: React.FC = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedDemand, setSelectedDemand] = useState<Demand | null>(null);
   const { demands, deleteDemand } = useContext(DemandContext)!;
-
-  
-  const [startDate, setStartDate] =  useState<Date>(new Date("2024/02/08"));
-  const [endDate, setEndDate] =  useState<Date>(new Date("2024/02/26"));
 
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -126,8 +123,8 @@ const DemandsPage: React.FC = () => {
           <td>
             {/* TODO Depending on status, this should be a different span*/}
         <span className="badge rounded-pill text-bg-success" id="tag-ok">OK</span>
-        <span className="badge rounded-pill text-bg-warning" id="tag-warning">Warning</span>
-        <span className="badge rounded-pill text-bg-danger" id="tag-danger">Danger</span>
+        {/*<span className="badge rounded-pill text-bg-warning" id="tag-warning">Warning</span>
+        <span className="badge rounded-pill text-bg-danger" id="tag-danger">Danger</span>*/}
       </td>
           <td>
           <Button onClick={() => handleEdit(demand)} variant="outline-secondary">Edit</Button>
@@ -208,73 +205,8 @@ const DemandsPage: React.FC = () => {
           <Modal.Title>Edit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-              <Form id='edit-form'>
-            <Row className="mb-3">
-              <Form.Group as={Col} controlId="formgridStartDate">
-                <Form.Label>Start Date</Form.Label>
-                <Form.Control 
-                 type="date"
-                 name="startdate"
-                 placeholder="Start Date"
-                 />
-              </Form.Group>
-              <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>End Date</Form.Label>
-              <Form.Control 
-                 type="date"
-                 name="enddate"
-                 placeholder="End Date"
-                 />
-              </Form.Group>
-            </Row>
-            <Form.Group className="mb-3" controlId="formGridAddress1">
-            <Row className="mb-3">
-              <Form.Group as={Col} controlId="formgridStartDate">
-                <Form.Label>Required Value</Form.Label>
-                <Form.Control
-                 name="startdate"
-                 placeholder="Required Value"
-                 />
-              </Form.Group>
-              <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>Delivered Value</Form.Label>
-              <Form.Control
-                 name="enddate"
-                 placeholder="Delivered Value"
-                 />
-              </Form.Group>
-              <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>Maximum Value</Form.Label>
-              <Form.Control 
-                 name="enddate"
-                 placeholder="Maximum Value"
-                 />
-              </Form.Group>
-            </Row>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formGridAddress2">
-              <Form.Label>Description</Form.Label>
-              <Form.Control placeholder="Description" />
-            </Form.Group>
-            <Row className="mb-3">
-              <Form.Group as={Col} controlId="formGridState">
-                <Form.Label>State</Form.Label>
-                <Form.Select defaultValue="Choose...">
-                  <option>Choose...</option>
-                  <option>...</option>
-                </Form.Select>
-              </Form.Group>
-            </Row>
-          </Form>
+        {selectedDemand && <EditForm theDemand={selectedDemand} />}
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          <Button variant="secondary" onClick={handleCloseEdit}>
-            Close
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

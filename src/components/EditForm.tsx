@@ -11,7 +11,7 @@
  */
 
 import React, { useContext, useState, useEffect } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Col,Row} from 'react-bootstrap';
 import { DemandContext, Demand } from '../contexts/DemandContextProvider';
 
 interface EditFormProps {
@@ -29,12 +29,11 @@ const EditForm: React.FC<EditFormProps> = ({ theDemand }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    
     if (demand.requiredValue <= 0) {
       console.log('Required value must be greater than 0');
       return;
     }
-
     updateDemand(demand);
   };
 
@@ -44,25 +43,69 @@ const EditForm: React.FC<EditFormProps> = ({ theDemand }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <p>Required Value</p>
-      <Form.Group>
-        <Form.Control
-          type="number"
-          placeholder="Required Value"
-          name="requiredValue"
-          value={demand.requiredValue}
-          onChange={handleInputChange}
-        />
+
+    <Form onSubmit={handleSubmit}  id='edit-form'>
+    <Row className="mb-3">
+      <Form.Group as={Col} controlId="formgridStartDate">
+        <Form.Label>Start Date</Form.Label>
+        <Form.Control 
+         type="date"
+         name="startdate"
+         placeholder="Start Date"
+         defaultValue={demand.startDate.split('T')[0]}
+         />
       </Form.Group>
-
-      {/* Add other input fields for the remaining properties of Demand */}
-
-      <p />
-      <Button variant="primary" type="submit" className="btn-block">
-        Save Changes
+      <Form.Group as={Col} controlId="formGridPassword">
+      <Form.Label>End Date</Form.Label>
+      <Form.Control 
+         type="date"
+         name="enddate"
+         placeholder="End Date"
+         defaultValue={demand.endDate.split('T')[0]}
+         />
+      </Form.Group>
+    </Row>
+    <Form.Group className="mb-3" controlId="formGridAddress1">
+    <Row className="mb-3">
+      <Form.Group as={Col} controlId="formgridStartDate">
+        <Form.Label>Required Value</Form.Label>
+        <Form.Control
+         name="startdate"
+         placeholder="Required Value"
+         defaultValue={demand.requiredValue}
+         />
+      </Form.Group>
+      <Form.Group as={Col} controlId="formGridPassword">
+      <Form.Label>Delivered Value</Form.Label>
+      <Form.Control
+         name="enddate"
+         placeholder="Delivered Value"
+         defaultValue={demand.deliveredValue}
+         />
+      </Form.Group>
+      <Form.Group as={Col} controlId="formGridPassword">
+      <Form.Label>Maximum Value</Form.Label>
+      <Form.Control 
+         name="enddate"
+         placeholder="Maximum Value"
+         defaultValue={demand.maximumValue}
+         />
+      </Form.Group>
+    </Row>
+    </Form.Group>
+    <Form.Group className="mb-3" controlId="formGridAddress2">
+      <Form.Label>Description</Form.Label>
+      <Form.Control 
+      placeholder="Description"
+      defaultValue={demand.description}/>
+    </Form.Group>
+    <Button variant="primary" type="submit">
+              Submit
       </Button>
-    </Form>
+  </Form>
+
+
+
   );
 };
 
