@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2023 Contributors to the Eclipse Foundation
  *
@@ -10,29 +9,25 @@
  *
  *  SPDX-License-Identifier: Apache-2.0
  */
-
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
-import {BrowserRouter as Router, Route,Routes } from "react-router-dom";
-import Home from "./components/Home";
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-
-    <Router>
-        <Routes>
-
-            <Route path="/" element={<Home/>} />
-
-
-        </Routes>
-    </Router>
-
-
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export interface Demand {
+    id: number;
+    materialDescriptionCustomer: string
+    materialNumberCustomer: string
+    materialNumberSupplier: string
+    customerId: string
+    supplierId: string
+    unitMeasureId: string
+    materialDemandSeries: MaterialDemandSeries
+  }
+  
+  export interface MaterialDemandSeries {
+    customerLocationId: string
+    expectedSupplierLocationId: string[]
+    demandCategoryId: string
+    demandSeriesValues: DemandSeriesValue[]
+  }
+  
+  export interface DemandSeriesValue {
+    calendarWeek: string
+    demand: number
+  }

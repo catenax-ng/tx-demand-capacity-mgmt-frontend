@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2023 Contributors to the Eclipse Foundation
  *
@@ -12,27 +11,30 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
-import {BrowserRouter as Router, Route,Routes } from "react-router-dom";
-import Home from "./components/Home";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+type DemandsSearchProps = {
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+};
 
-    <Router>
-        <Routes>
+const DemandsSearch: React.FC<DemandsSearchProps> = ({ searchQuery, setSearchQuery }) => {
+  return (
 
-            <Route path="/" element={<Home/>} />
+      <Form className="d-flex">
+    <Form.Control
+      type="search"
+      placeholder="Search"
+      className="me-1"
+      aria-label="Search"
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+    />
+    <Button variant="outline-primary">Search</Button>
+  </Form>
+    
+  );
+};
 
-
-        </Routes>
-    </Router>
-
-
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export default DemandsSearch;

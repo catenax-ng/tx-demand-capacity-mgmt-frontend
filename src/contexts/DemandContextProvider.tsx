@@ -1,38 +1,19 @@
-/********************************************************************************
- * Copyright (c) 2021,2023 Contributors to the Eclipse Foundation
+/*
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
  *
- * See the NOTICE file(s) distributed with this work for additional
- * information regarding copyright ownership.
+ *  See the NOTICE file(s) distributed with this work for additional information regarding copyright ownership.
  *
- * This program and the accompanying materials are made available under the
- * terms of the Apache License, Version 2.0 which is available at
- * https://www.apache.org/licenses/LICENSE-2.0.
+ *  This program and the accompanying materials are made available under the terms of the Apache License, Version 2.0 which is available at https://www.apache.org/licenses/LICENSE-2.0.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
+ *  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  *
- * SPDX-License-Identifier: Apache-2.0
- ********************************************************************************/
+ *  SPDX-License-Identifier: Apache-2.0
+ */
 
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { Demand } from '../interfaces/demand_interfaces';
 
-export interface Demand {
-  id: number;
-  product: string;
-  companyId: string;
-  requiredValue: number;
-  deliveredValue: number;
-  maximumValue: number;
-  demandCategory: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-  [key: string]: any;
-}
 
 interface DemandContextData {
   demands: Demand[];
@@ -66,7 +47,6 @@ const DemandContextProvider: React.FC<React.PropsWithChildren<{}>> = (props) => 
     };
   
     fetchDemands();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
 
@@ -81,6 +61,7 @@ const DemandContextProvider: React.FC<React.PropsWithChildren<{}>> = (props) => 
 
   const createDemand = async (newDemand: Demand) => {
     try {
+      console.log(newDemand);
       const response = await api.post('/demand', newDemand);
       const createdDemand: Demand = response.data;
       setDemands((prevDemands) => [...prevDemands, createdDemand]);
