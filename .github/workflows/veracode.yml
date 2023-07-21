@@ -1,26 +1,26 @@
-name: "Veracode upload and scan"
+name: Veracode Static Analysis Pipeline Scan
 
 on:
   push:
-    branches:
-      - feture/FrontendandCSS
-      - main
-      - dev
-    paths:
-      - 'src/**'
-      - 'package.json'
-      - 'Dockerfile'
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '27 12 * * 6'
+
+permissions:
+  contents: read
+
 jobs:
-  analyze:
-    runs-on: ubuntu-latest
+  build-and-pipeline-scan:
     permissions:
-      actions: read
       contents: read
       security-events: write
+      actions: read
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           repository: ''
 
