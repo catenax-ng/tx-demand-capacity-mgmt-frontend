@@ -11,7 +11,8 @@
  */
 
 import React, { useContext, useState } from 'react';
-import { DemandContext, Demand } from '../contexts/DemandContextProvider';
+import { DemandContext } from '../contexts/DemandContextProvider';
+import { Demand } from '../interfaces/demand_interfaces';
 import { Modal, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import EditForm from './EditForm';
 

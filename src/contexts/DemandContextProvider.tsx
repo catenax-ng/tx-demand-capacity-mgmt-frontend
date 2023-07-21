@@ -12,20 +12,8 @@
 
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { Demand } from '../interfaces/demand_interfaces';
 
-export interface Demand {
-  id: number;
-  product: string;
-  companyId: string;
-  requiredValue: number;
-  deliveredValue: number;
-  maximumValue: number;
-  demandCategory: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-  [key: string]: any;
-}
 
 interface DemandContextData {
   demands: Demand[];
@@ -59,7 +47,6 @@ const DemandContextProvider: React.FC<React.PropsWithChildren<{}>> = (props) => 
     };
   
     fetchDemands();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
 
@@ -74,6 +61,7 @@ const DemandContextProvider: React.FC<React.PropsWithChildren<{}>> = (props) => 
 
   const createDemand = async (newDemand: Demand) => {
     try {
+      console.log(newDemand);
       const response = await api.post('/demand', newDemand);
       const createdDemand: Demand = response.data;
       setDemands((prevDemands) => [...prevDemands, createdDemand]);

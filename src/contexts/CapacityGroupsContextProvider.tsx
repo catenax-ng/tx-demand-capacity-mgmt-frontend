@@ -12,20 +12,7 @@
 
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-
-export interface CapacityGroup {
-  id: number;
-  product: string;
-  companyId: string;
-  requiredValue: number;
-  deliveredValue: number;
-  maximumValue: number;
-  category: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-  [key: string]: any;
-}
+import { CapacityGroup } from '../interfaces/capacitygroup_interfaces';
 
 interface CapacityGroupContextData {
   capacitygroups: CapacityGroup[];

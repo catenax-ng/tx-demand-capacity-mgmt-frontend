@@ -12,7 +12,8 @@
 
 import React, { useContext, useState, useEffect } from 'react';
 import { Form, Button, Col,Row} from 'react-bootstrap';
-import { DemandContext, Demand } from '../contexts/DemandContextProvider';
+import { DemandContext} from '../contexts/DemandContextProvider';
+import { Demand } from '../interfaces/demand_interfaces';
 
 interface EditFormProps {
   theDemand: Demand;

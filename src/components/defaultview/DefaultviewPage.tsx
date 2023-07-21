@@ -12,8 +12,8 @@
 
 import React, { useContext, useState, useMemo, useCallback } from 'react';
 import { Modal, Button,Form,Col,Row } from 'react-bootstrap';
-import { CapacityGroupContext, CapacityGroup } from '../../contexts/CapacityGroupsContextProvider';
-import EditForm from '../EditForm';
+import { CapacityGroupContext  } from '../../contexts/CapacityGroupsContextProvider';
+import { CapacityGroup } from '../../interfaces/capacitygroup_interfaces';
 import AddForm from '../AddForm';
 import Pagination from '../Pagination';
 import CapacityGroupsTable from './CapacityGroupsTable';
